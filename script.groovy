@@ -6,11 +6,14 @@ def buildJar() {
 def buildImage() {
     echo "building the docker image..."
     withCredentials([usernamePassword(credentialsId: 'dockerhup', passwordVariable: 'PASS', usernameVariable: 'USER')]) {
-        bat 'docker build -t walid123321/java_app:1.0 .'  // Build Docker Image
-        bat 'echo %PASS% | docker login -u %USER% --password-stdin'  // Login to Docker
-        bat 'docker push walid123321/java_app:1.0'  // Push Docker Image
+        bat """
+        docker build -t walid123321/java_app:1.0 .
+        echo %PASS% | docker login -u %USER% --password-stdin
+        docker push walid123321/java_app:1.0
+        """
     }
-} 
+}
+
 
 def deployApp() {
     echo 'deploying the application...'
