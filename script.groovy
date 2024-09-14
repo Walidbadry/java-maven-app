@@ -1,7 +1,7 @@
 def buildJar() {
     echo "building the application..."
     bat 'mvn package'
-} 
+}
 
 def buildImage() {
     echo "building the docker image..."
@@ -14,10 +14,9 @@ def buildImage() {
     }
 }
 
-
 def deployApp() {
-    echo 'deploying the application...'
-    // Add Windows-specific deployment commands if needed
-} 
+    echo "deploying the application..."
+}
 
+// Return this to make methods available to Jenkins
 return this
