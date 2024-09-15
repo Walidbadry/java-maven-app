@@ -1,5 +1,5 @@
 def gv
-@library('jenkins_shared_lib')
+@Library('jenkins_shared_lib')
 pipeline {
     agent any
     stages {
