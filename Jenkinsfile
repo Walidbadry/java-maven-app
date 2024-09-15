@@ -1,5 +1,10 @@
 #!/user/bin/env groovy
-@Library('jenkins_shared_lib')
+//@Library('jenkins_shared_lib')
+@Library(identifier: 'jenkins-shared-lib', retriever: modernSCM([
+    $class: 'GitSCMSource',
+    remote: 'https://github.com/YourRepo/jenkins-shared-library.git',
+    credentialsId: 'githup_credintials'
+])) _
 def gv
 
 pipeline {
@@ -24,7 +29,10 @@ pipeline {
             steps {
                 script {
                     echo "building image"
-                    // buildImage()
+                    // buildImage 'my_app:1.1'
+                   //  dockerLogin()
+                  //   dockerPush 'my_app:1.1'
+                
                 }
             }
         }
