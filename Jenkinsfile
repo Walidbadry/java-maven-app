@@ -1,5 +1,5 @@
 #!/user/bin/env groovy
-
+def gv
 pipeline {
     agent any
     stages {
@@ -14,7 +14,7 @@ pipeline {
             steps {
                 script {
                     echo "building jar"
-                    gv.buildJar()
+                    buildJar()
                 }
             }
         }
@@ -22,7 +22,7 @@ pipeline {
             steps {
                 script {
                     echo "building image"
-                    gv.buildImage()
+                    // buildImage()
                 }
             }
         }
