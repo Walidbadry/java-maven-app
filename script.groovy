@@ -26,4 +26,21 @@ def deployApp() {
     echo 'deploying the application...'
 } 
 
+def coomit_version(){
+    withCredentials([usernamePassword(credentialsId: 'github_credentials', passwordVariable: 'PASS', usernameVariable: 'USER')]){
+        sh 'git config --global user.email "jenkins@example.com"'
+        sh 'git config --global user.name "jenkins"'
+
+        sh 'git status'
+        sh 'git branch'
+        sh 'git config --list'
+
+        sh "git remote set-url origin https://${USER}:${PASS}@https://github.com/Walidbadry/java-maven-app.git"
+        sh 'git add .'
+        sh 'git commit -m "this is from jenkins version bumpe"'
+        sh 'git push origin HEAD:increment_app_version'
+    }
+    
+
+}
 return this
