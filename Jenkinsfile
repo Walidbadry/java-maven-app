@@ -1,4 +1,5 @@
 def gv
+
 pipeline {
     agent any
     stages {
@@ -8,6 +9,15 @@ pipeline {
                     gv = load "script.groovy"
                 }
             }
+        }
+
+        stage('increment version'){
+                steps{
+                    script{
+                        gv.incremint_ver()
+                        
+                    }
+                }
         }
         stage("build jar") {
             steps {
@@ -29,7 +39,7 @@ pipeline {
             steps {
                 script {
                     echo "deploying"
-                    gv.deployApp()
+                    //gv.deployApp()
                 }
             }
         }
