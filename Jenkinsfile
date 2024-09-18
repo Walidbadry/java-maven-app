@@ -17,6 +17,14 @@ pipeline {
                 }
             }
         }
+        stage('increment version'){
+                steps{
+                    script{
+                        gv.incremint_ver()
+                        
+                    }
+                }
+        }        
         stage("build jar") {
             steps {
                 script {
@@ -50,5 +58,13 @@ pipeline {
             }
         }
 
+        stage("commit version update") {
+            steps {
+                script {
+                    gv.coomit_version()
+
+                }
+            }
+        }
     }   
 }
