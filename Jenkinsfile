@@ -40,9 +40,9 @@ pipeline {
             steps {
                 script {
                     echo "building image"
-                    buildImage "env.IMAGE_NAME"
+                    buildImage "env.IMAGE"
                     dockerLogin()
-                    dockerPush "env.IMAGE_NAME"
+                    dockerPush "env.IMAGE"
                 
                 }
             }
