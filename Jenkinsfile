@@ -29,20 +29,26 @@ pipeline {
             steps {
                 script {
                     echo "building image"
-                    // buildImage 'my_app:1.1'
-                   //  dockerLogin()
-                  //   dockerPush 'my_app:1.1'
+                    buildImage 'my_app:1.1'
+                    dockerLogin()
+                    dockerPush 'my_app:1.1'
                 
                 }
             }
         }
-        stage("deploy") {
+        stage('deploy repository') {
             steps {
-                script {
-                    echo "deploying"
-                    gv.deployApp()
+                def DockerCmd = 'docker run -d -p 3000:3080 walid123321/demo-app:1.1'
+                // Start the SSH agent and use the credentials ID
+                sshagent(['ec2-server-key']) {
+                    sh "ssh -o StrictHostKeyChecking=no ec2-user@35.180.251.121 ${DockerCmd}"
+                    // Run any SSH commands or clone repository via SSH
+                    // sh 'git clone git@github.com:your-repository.git'
+
+                    //you should configer ec2 rule
                 }
             }
         }
+
     }   
 }
