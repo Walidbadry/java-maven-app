@@ -9,6 +9,9 @@ def gv
 
 pipeline {
     agent any
+    environment{
+        IMAGE_NAME = 'walid123321/demo-app:1.1'
+    }
     stages {
         stage("init") {
             steps {
@@ -37,16 +40,16 @@ pipeline {
             steps {
                 script {
                     echo "building image"
-                    buildImage 'my_app:1.1'
+                    buildImage "env.IMAGE_NAME"
                     dockerLogin()
-                    dockerPush 'my_app:1.1'
+                    dockerPush "env.IMAGE_NAME"
                 
                 }
             }
         }
         stage('deploy repository') {
             steps {
-                def DockerCmd = 'docker run -d -p 3000:3080 walid123321/demo-app:1.1'
+                def DockerCmd = 'docker run -d -p 3000:3080 IMAGE_NAME'
                 // Start the SSH agent and use the credentials ID
                 sshagent(['ec2-server-key']) {
                     sh "ssh -o StrictHostKeyChecking=no ec2-user@35.180.251.121 ${DockerCmd}"
