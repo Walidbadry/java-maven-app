@@ -6,7 +6,7 @@ def incremint_ver(){
       versions:commit'
    def macher= readFile('pom.xml') =~ '<version>(.+)</version>'
    def version =macher[0][1]     
-   env.IMAGE_NAME = "$version - $BUILD_NUMPER"
+   env.IMAGE_NAME = "$version-$BUILD_NUMPER"
 }
 def buildJar() {
     echo "building the application..."
