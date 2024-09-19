@@ -10,7 +10,7 @@ def gv
 pipeline {
     agent any
     environment{
-        IMAGE= 'walid123321/demo-app:$IMAGE_NAME'
+        IMAGE= 'walid123321/java-app:$IMAGE_NAME'
     }
     stages {
         stage("init") {
