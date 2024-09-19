@@ -3,7 +3,7 @@ FROM openjdk:11-jre-slim
 
 
 # Copy the JAR file into the container
-COPY ./target/java-maven-app-1.1-SNAPSHOT.jar /usr/app
+COPY ./target/java-maven-app-*.jar /usr/app
 
 WORKDIR /usr/app
 # Expose the port the app runs on
