@@ -51,7 +51,7 @@ pipeline {
             steps {
                 // Start the SSH agent and use the credentials ID
                 sshagent(['ec2-server-key']) {
-                    def shellcmd = "bash ./server_cmd.sh"
+                    def shellcmd = "bash ./server_cmd.sh ${IMAGE}"
                     sh 'scp server_cmd.sh ec2-user@35.180.251.121:/home/ec2-user'
                     sh 'scp docker-compose.yaml ec2-user@35.180.251.121:/home/ec2-user'
                     sh "ssh -o StrictHostKeyChecking=no ec2-user@35.180.251.121 ${shellcmd}"
