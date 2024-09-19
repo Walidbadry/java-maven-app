@@ -7,9 +7,9 @@ def buildImage() {
     echo "building the docker image..."
     withCredentials([usernamePassword(credentialsId: 'dockerhup', passwordVariable: 'PASS', usernameVariable: 'USER')]) {
         bat """
-            docker build -t walid123321/java_app:1.1 .
+            docker build -t walid123321/java_app:1.2 .
             echo %PASS% | docker login -u %USER% --password-stdin
-            docker push --quiet walid123321/java_app:1.1
+            docker push --quiet walid123321/java_app:1.2
         """
     }
 }
