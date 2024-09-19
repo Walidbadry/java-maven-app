@@ -9,7 +9,7 @@ def buildImage() {
         bat """
             docker build -t walid123321/java_app:1.1 .
             echo %PASS% | docker login -u %USER% --password-stdin
-            docker push walid123321/java_app:1.1
+            docker push --quiet walid123321/java_app:1.1
         """
     }
 }
