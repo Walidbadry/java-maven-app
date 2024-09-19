@@ -1,7 +1,7 @@
 version: '3'
 services:
   java_maven_app:
-    image: ${IMAGE_NAME}
+    image: ${IMAGE_VESION}
     ports:
       -8080:8080
   postgres:
