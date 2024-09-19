@@ -49,10 +49,11 @@ pipeline {
         }
         stage('deploy repository') {
             steps {
-                def DockerCmd = 'docker run -d -p 3000:3080 IMAGE_NAME'
                 // Start the SSH agent and use the credentials ID
                 sshagent(['ec2-server-key']) {
-                    sh "ssh -o StrictHostKeyChecking=no ec2-user@35.180.251.121 ${DockerCmd}"
+                    def DockerCompose = "docker-compose -f docker-compose.yaml up  --detach"
+                    sh 'scp docker-compose.yaml ec2-user@35.180.251.121:/home/ec2-user'
+                    sh "ssh -o StrictHostKeyChecking=no ec2-user@35.180.251.121 ${DockerCompose}"
                     // Run any SSH commands or clone repository via SSH
                     // sh 'git clone git@github.com:your-repository.git'
 
