@@ -11,5 +11,5 @@ COPY ./target/java-maven-app-1.0.jar /usr/src/app
 EXPOSE 8080
 
 # Command to run the JAR file
-CMD ["java", "-jar", "myapp.jar"]
+CMD ["java", "-jar", "java-maven-app-1.0.jar"]
 
