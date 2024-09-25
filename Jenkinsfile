@@ -35,12 +35,17 @@ pipeline {
                 }
             }
         }
-        stage("deploy") {
+        stage('deploy repository to eks') {
+            environment{
+                AWS_ACCES_KEY_ID = cradentials('jenkins-aws-access-key_id') 
+                AWS_SECRET_ACCESS_KEY = cradentials('jenkins-aws-secret-access_key')
+                APP_NAME = 'JAVA_MAVEN_APP'
+            }
             steps {
-                script {
-                    echo "deploying"
-                    //gv.deployApp()
-                }
+                echo "deploy docker image"
+                sh "envsubset <deployment.yaml | kupectl apply -f -"
+                sh "envsubset <service.yaml | kupectl apply -f -"
+                //you shold install envsubset for passing invironment inside docker > apt-get install gettext-base
             }
         }
 
