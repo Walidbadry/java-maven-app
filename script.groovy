@@ -22,9 +22,22 @@ def buildImage() {
     }
 } 
 
-def deployApp() {
-    echo 'deploying the application...'
-} 
+def buildImageWithECR() {
+    echo "building the docker image..."
+    
+    withCredentials([usernamePassword(credentialsId: 'aws-ecr-credentials', passwordVariable: 'AWS_SECRET', usernameVariable: 'AWS_ACCESS')]) {
+        
+        // Retrieve the AWS ECR login password and login to the ECR
+        sh "aws ecr get-login-password --region <your-region> | docker login --username AWS --password-stdin <aws-account-id>.dkr.ecr.<your-region>.amazonaws.com"
+        
+        // Build the Docker image and tag it for ECR
+        sh "docker build -t <aws-account-id>.dkr.ecr.<your-region>.amazonaws.com/demo-app:$IMAGE_NAME ."
+        
+        // Push the image to AWS ECR
+        sh "docker push <aws-account-id>.dkr.ecr.<your-region>.amazonaws.com/demo-app:$IMAGE_NAME"
+    }
+}
+
 
 def coomit_version(){
     withCredentials([usernamePassword(credentialsId: 'github_credentials', passwordVariable: 'PASS', usernameVariable: 'USER')]){
