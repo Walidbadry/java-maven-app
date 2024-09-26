@@ -35,6 +35,13 @@ def buildImageWithECR() {
         
         // Push the image to AWS ECR
         sh "docker push <aws-account-id>.dkr.ecr.<your-region>.amazonaws.com/demo-app:$IMAGE_NAME"
+
+                        //for eks cradentials for acces docker hup >>
+                 //  kubectl create secret docker-registry <secret-name> \
+                //  --docker-username=<your-username> \
+               //   --docker-password=<your-password> \
+               //   --docker-email=<your-email> \
+               //   --docker-server=<registry-server>
     }
 }
 
