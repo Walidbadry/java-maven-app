@@ -45,6 +45,13 @@ pipeline {
                 echo "deploy docker image"
                 sh "envsubset <deployment.yaml | kupectl apply -f -"
                 sh "envsubset <service.yaml | kupectl apply -f -"
+                //for eks cradentials for acces docker hup >>
+                 //  kubectl create secret docker-registry <secret-name> \
+                //  --docker-username=<your-username> \
+               //   --docker-password=<your-password> \
+               //   --docker-email=<your-email> \
+               //   --docker-server=<registry-server>
+             
                 //you shold install envsubset for passing invironment inside docker > apt-get install gettext-base
             }
         }
