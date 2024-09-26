@@ -14,7 +14,9 @@ spec:
       labels:
         app:  $ABB_NAME
     spec:
-      containers:
+      imagePullSecret:
+       - name: my-docker-secret #from secret file or command
+      containers:      
       - name:  $ABB_NAME
         image: walid123321/demo-app:$IMAGE_NAME
         imagePullPolicy: Always
