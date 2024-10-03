@@ -4,7 +4,7 @@ pipeline {
     agent any
     
     environment {
-        DOCKER_USERNAME = 'walid882001@gmail.com' // Your Docker Hub username
+        DOCKER_USERNAME = 'walid123321' // Your Docker Hub username
         DOCKER_PASSWORD = 'walid@#@123321' // Your Docker Hub password or Personal Access Token
     }
 
