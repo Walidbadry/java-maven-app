@@ -1,38 +1,12 @@
-def gv
-
 pipeline {
     agent any
     stages {
-        stage("init") {
+        stage('Test Docker Login') {
             steps {
-                script {
-                    gv = load "script.groovy"
+                withCredentials([usernamePassword(credentialsId: 'docker_docker', passwordVariable: 'PASS', usernameVariable: 'USER')]) {
+                    bat "echo %PASS% | docker login -u %USER% --password-stdin"
                 }
             }
         }
-        stage("build jar") {
-            steps {
-                script {
-                    echo "building jar"
-                    gv.buildJar()
-                }
-            }
-        }
-        stage("build image") {
-            steps {
-                script {
-                    echo "building image"
-                    gv.buildImage()
-                }
-            }
-        }
-        stage("deploy") {
-            steps {
-                script {
-                    echo "deploying"
-                    gv.deployApp()
-                }
-            }
-        }
-    }   
+    }
 }
