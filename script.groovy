@@ -5,7 +5,7 @@ def buildJar() {
 
 def buildImage() {
     echo "Building the Docker image..."
-    withCredentials([usernamePassword(credentialsId: 'dockerhub', passwordVariable: 'PASS', usernameVariable: 'USER')]) {
+    withCredentials([usernamePassword(credentialsId: 'docker_docker', passwordVariable: 'PASS', usernameVariable: 'USER')]) {
         def buildResult = bat(script: 'docker build -t walid123321/java_app:1.2 .', returnStatus: true)
         if (buildResult != 0) {
             error "Docker build failed with status ${buildResult}"
