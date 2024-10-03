@@ -5,7 +5,7 @@ pipeline {
     
     environment {
         DOCKER_USERNAME = 'walid882001@gmail.com' // Your Docker Hub username
-        DOCKER_PASSWORD = 'dckr_pat_bnOcmNfggc5LIUMxoem6FaJbATo' // Your Docker Hub password or Personal Access Token
+        DOCKER_PASSWORD = 'walid@#@123321' // Your Docker Hub password or Personal Access Token
     }
 
     stages {
