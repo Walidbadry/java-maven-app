@@ -1,6 +1,9 @@
 def gv
 pipeline {
     agent any
+    tools {
+        maven 'Maven 3.8.1' // Replace with the name you configured in Global Tool Configuration
+    }    
     stages {
         stage("init") {
             steps {
