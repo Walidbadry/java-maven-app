@@ -6,9 +6,9 @@ def buildJar() {
 def buildImage() {
     echo "building the docker image..."
     withCredentials([usernamePassword(credentialsId: 'docker-hub-repo', passwordVariable: 'PASS', usernameVariable: 'USER')]) {
-        sh sudo 'docker build -t walid123321/java_app:1.0 .'
-        sh sudo "echo $PASS | docker login -u $USER --password-stdin"
-        sh sudo 'docker push walid123321/java_app:1.0'
+        sh 'docker build -t walid123321/java_app:1.0 .'
+        sh "echo $PASS | docker login -u $USER --password-stdin"
+        sh 'docker push walid123321/java_app:1.0'
     }
 } 
 
