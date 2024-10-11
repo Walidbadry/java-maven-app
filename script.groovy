@@ -7,7 +7,6 @@ def buildImage() {
     echo "Building the Docker image..."
 
     // Use withCredentials to securely handle Docker Hub credentials
-    withCredentials([usernamePassword(credentialsId: 'docker-hub-repo', passwordVariable: 'PASS', usernameVariable: 'USER')]) {
         
         // Build the Docker image
         sh 'docker build -t walid123321/java_app:1.0 .'
@@ -18,7 +17,7 @@ def buildImage() {
         // Push the Docker image to Docker Hub
         sh 'docker push walid123321/java_app:1.0'
     }
-}
+
 
 def deployApp() {
     echo 'deploying the application...'
