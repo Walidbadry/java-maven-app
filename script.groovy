@@ -10,10 +10,7 @@ def buildImage() {
         
         // Build the Docker image
         sh 'docker build -t walid123321/java_app:1.0 .'
-
         // Log in to Docker Hub
-        sh "echo \$PASS | docker login -u \$USER --password-stdin"
-
         // Push the Docker image to Docker Hub
         sh 'docker push walid123321/java_app:1.0'
     }
