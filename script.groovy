@@ -9,7 +9,7 @@ def buildImage() {
     // Use withCredentials to securely handle Docker Hub credentials
         
         // Build the Docker image
-        sh 'docker build -t walid123321/java_app:1.0 .'
+        sh 'docker build -t walid123321/java_app_12:1.0 .'
         // Log in to Docker Hub
         // Push the Docker image to Docker Hub
         sh 'docker push walid123321/java_app_12:1.0'
