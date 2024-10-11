@@ -12,7 +12,7 @@ def buildImage() {
         sh 'docker build -t walid123321/java_app:1.0 .'
         // Log in to Docker Hub
         // Push the Docker image to Docker Hub
-        sh 'docker push walid123321/java_app:1.0'
+        sh 'docker push walid123321/java_app_12:1.0'
     }
 
 
