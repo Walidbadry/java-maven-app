@@ -4,13 +4,21 @@ def buildJar() {
 } 
 
 def buildImage() {
-    echo "building the docker image..."
+    echo "Building the Docker image..."
+
+    // Use withCredentials to securely handle Docker Hub credentials
     withCredentials([usernamePassword(credentialsId: 'docker-hub-repo', passwordVariable: 'PASS', usernameVariable: 'USER')]) {
+        
+        // Build the Docker image
         sh 'docker build -t walid123321/java_app:1.0 .'
-        sh "echo $PASS | docker login -u $USER --password-stdin"
+
+        // Log in to Docker Hub
+        sh "echo \$PASS | docker login -u \$USER --password-stdin"
+
+        // Push the Docker image to Docker Hub
         sh 'docker push walid123321/java_app:1.0'
     }
-} 
+}
 
 def deployApp() {
     echo 'deploying the application...'
