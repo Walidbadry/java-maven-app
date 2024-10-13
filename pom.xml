@@ -57,4 +57,16 @@
         </dependency>
     </dependencies>
 
+    <!-- Add this section to specify deployment repository -->
+    <distributionManagement>
+        <repository>
+            <id>my-repo</id>
+            <url>https://myrepo.example.com/repository/maven-releases/</url>
+        </repository>
+        <snapshotRepository>
+            <id>my-snapshots</id>
+            <url>https://myrepo.example.com/repository/maven-snapshots/</url>
+        </snapshotRepository>
+    </distributionManagement>
+
 </project>
