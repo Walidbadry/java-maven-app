@@ -8,8 +8,24 @@
     <artifactId>java-maven-app</artifactId>
     <version>1.1.0-SNAPSHOT</version>
 
+    <!-- Add the distributionManagement section for deploying to a repository -->
+    <distributionManagement>
+        <!-- Repository for release versions -->
+        <repository>
+            <id>releases</id>
+            <url>https://your-nexus-repo-url/repository/maven-releases/</url>
+        </repository>
+        
+        <!-- Repository for snapshot versions -->
+        <snapshotRepository>
+            <id>snapshots</id>
+            <url>https://your-nexus-repo-url/repository/maven-snapshots/</url>
+        </snapshotRepository>
+    </distributionManagement>
+
     <build>
         <plugins>
+            <!-- Spring Boot Maven Plugin -->
             <plugin>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
@@ -23,7 +39,7 @@
                 </executions>
             </plugin>
 
-            <!-- to handle any Java version mismatch, add the following configuration for maven-compiler-plugin -->
+            <!-- Maven Compiler Plugin to specify Java version -->
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
@@ -33,16 +49,25 @@
                     <target>1.8</target>
                 </configuration>
             </plugin>
+            
+            <!-- Maven Deploy Plugin (Optional, included if deploying manually) -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-deploy-plugin</artifactId>
+                <version>2.7</version>
+            </plugin>
         </plugins>
     </build>
 
     <dependencies>
+        <!-- Spring Boot Starter Web -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-web</artifactId>
             <version>2.3.4.RELEASE</version>
         </dependency>
 
+        <!-- JUnit for testing -->
         <dependency>
             <groupId>junit</groupId>
             <artifactId>junit</artifactId>
@@ -50,23 +75,12 @@
             <scope>test</scope>
         </dependency>
 
+        <!-- Logstash Logback Encoder for logging -->
         <dependency>
             <groupId>net.logstash.logback</groupId>
             <artifactId>logstash-logback-encoder</artifactId>
             <version>6.4</version>
         </dependency>
     </dependencies>
-
-    <!-- Add this section to specify deployment repository -->
-    <distributionManagement>
-        <repository>
-            <id>my-repo</id>
-            <url>https://myrepo.example.com/repository/maven-releases/</url>
-        </repository>
-        <snapshotRepository>
-            <id>my-snapshots</id>
-            <url>https://myrepo.example.com/repository/maven-snapshots/</url>
-        </snapshotRepository>
-    </distributionManagement>
 
 </project>
